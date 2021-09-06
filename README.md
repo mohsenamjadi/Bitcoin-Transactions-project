@@ -1,3 +1,14 @@
+<img src="Images/1200px-University_of_Tehran_logo.svg.png" width="100" align="left" />
+
+<img src="Images/fanni.png" width="100" align="right"/>
+
+
+<h1 style="float:center;" align="center">Bitcoin Transactions</h1>
+<h4 style="float:center;" align="center"><b> Mohsen Amjadi </b></h4>
+
+
+<br>
+
 # Section 1
 
 In this project we want to interact with bitcoin network practically and make some transactions to fully understand the content of the course.
@@ -31,6 +42,7 @@ mnDRW17zqsRT4ew6o4KTdsaXsqELf6uGfq
 
 the difference between MainNet and TestNet addresses is that the address for the mainnet start with 1 but the address for the testnet start with m or n.
 
+```python
 
 import os
 import hashlib
@@ -135,9 +147,19 @@ def getWif(privkey):
 randomBytes = os.urandom(32)
 print("Address: " + getPublicKey(randomBytes))
 print("Privkey: " + getWif(randomBytes))
+
+```
+
 ## Q2
+
 this is a simple code that I have written for generating vanity address that start with three character "moh" which is the first three characters of my name. but eventhough I made the code to work in parallel, due to my laptop is weak and it takes a long time to be generated, I have not generated the vanity address but by running this code it may be generated after a time.
+
+
+```python
 !pip install bitcoin
+```
+
+```python
 import bitcoin
 import random
 import time
@@ -177,6 +199,8 @@ start = time.time()
 pattern_mine()
 end = time.time() - start
 print("Elapsed time: ", end)
+```
+```python
 import bitcoin
 import random
 import time
@@ -205,6 +229,8 @@ start = time.time()
 pattern_mine()
 end = time.time() - start
 print("Elapsed time: ", end)
+```
+
 ## Q3
 Here in this question we have been asked to create segwit addresses.I have used python bitcoin-utils library to create such an address.
 
@@ -216,7 +242,11 @@ Because SegWit separates the signature data from a transaction, you can fit more
 
 Fitting more transactions into each block also leads to lower fees for users. Fees on SegWit transactions are generally 25 to 40 percent lower than non-SegWit ones.
 
+```python
 !pip install bitcoin-utils
+```
+
+```python
 from bitcoinutils.setup import setup
 from bitcoinutils.script import Script
 from bitcoinutils.keys import P2wpkhAddress, P2wshAddress, P2shAddress, PrivateKey, PublicKey
@@ -247,6 +277,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
+
 # section 2
 these python codes have been run seperately in different files but because of the importing issues I did not run these codes here, but here is my address and you can check the transactions of me in blockchain explorer.
 
@@ -254,6 +286,8 @@ address: mnDRW17zqsRT4ew6o4KTdsaXsqELf6uGfq
 In this section we are going to deal with transactions by completing a starter source code that we have been given, and it is using python bitcoinlib library.
 
 so our first step is to complete the source code. below is my first version of that:
+
+```python
 import bitcoin.wallet
 from bitcoin.core import COIN, b2lx, serialize, x, lx, b2x
 import utils as u
@@ -303,6 +337,9 @@ if __name__ == '__main__':
     response = send_from_P2PKH_transaction(amount_to_send, txid_to_spend, utxo_index, txout_scriptPubKey)
     print(response.status_code, response.reason)
     print(response.text)
+
+```
+
 so you can see in P2PKH_scriptPubKey function I returned:
 
 [OP_DUP, OP_HASH160, address, OP_EQUALVERIFY, OP_CHECKSIG]
@@ -343,6 +380,8 @@ so it returns [my_public_key, OP_CHECKSIGVERIFY, OP_2, p1, p2, p3, OP_3, OP_CHEC
 and I gave the three pub keys to this function and saved the output as txout_scriptPubKey :
 
 txout_scriptPubKey = P2PKH_scriptPubKey_multisig(pub1,pub2,pub3)
+
+```python
 
 import bitcoin.wallet
 from bitcoin.core import COIN, b2lx, serialize, x, lx, b2x
@@ -409,8 +448,12 @@ if __name__ == '__main__':
     response = send_from_P2PKH_transaction(amount_to_send, txid_to_spend, utxo_index, txout_scriptPubKey)
     print(response.status_code, response.reason)
     print(response.text)
+```
+
+
 after making the transaction we should spend that and send the money to my address. so for our purpose, I have written the below code for spending that. 
 
+```python
 from sys import exit
 from bitcoin.core.script import *
 
@@ -461,4 +504,4 @@ if __name__ == '__main__':
         txin_scriptPubKey, txout_scriptPubKey)
     print(response.status_code, response.reason)
     print(response.text)
-
+```
