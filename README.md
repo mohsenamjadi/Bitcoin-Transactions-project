@@ -11,6 +11,10 @@
 
 # Section 1
 
+If you want to gain some information about bitcoin protocol and the Blockchain you could read my article here:
+
+https://medium.com/coinmonks/what-is-blockchain-blockchain-deep-explanation-5844284efdb4
+
 In this project we want to interact with bitcoin network practically and make some transactions to fully understand the content of the course.
 
 for our purpose we are going to use TestNet that developers of bitcoin do their experiments on this network.
